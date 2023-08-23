@@ -33,7 +33,7 @@
                         Добавление поста
                         </h2>
            
-            <form action="{{route('admin.post.store')}}" method="POST" >
+            <form action="{{route('admin.post.store')}}" method="POST" enctype="multipart/form-data" >
                @csrf
                <div class="form-group w-25">
                  <input type="text" name="title" class="form-control"  placeholder="название" value="{{old('title')}}"></div>
@@ -41,11 +41,63 @@
 <div class="text-danger">Это поле необходимо заполнить</div>
                  @enderror
 
-<div class="form-group">
+<div class="form-group ">
     <textarea value="{{old('content')}}" id="summernote" name="content"></textarea>
-    @error('title')
+    @error('content')
 <div class="text-danger">Это поле необходимо заполнить</div>
                  @enderror
+                 <div class="form-group w-50">
+                    <label for="exampleInputFile">Добавить файл</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="preview_image" >
+                        <label class="custom-file-label" >Выберите файл</label>
+                      </div>
+                      <div class="input-group-append">
+                        <span class="input-group-text">Загрузка</span>
+                      </div>
+                    </div>
+                    @error('preview_image')
+<div class="text-danger">Это поле необходимо заполнить</div>
+                 @enderror
+                  </div>
+
+                  <div class="form-group w-50">
+                        <label>Выберите категорию</label>
+                        <select name="category_id"class="form-control">
+                          @foreach($categories as $category)
+                          <option value="{{$category->id}}" 
+                          {{$category->id==old('category_id')?'selected':''}}
+                          >{{$category->title}}</option>
+                          @endforeach
+                          
+                        </select>
+                        <div class="form-group">
+                  <label>Теги</label>
+                  <select class="select2" multiple="multiple" name="tag_ids[]" data-placeholder="Выберите теги" style="width: 100%;">
+                  @foreach($tags as $tag)
+                    <option  value="{{$tag->id}}">{{$tag->title}}</option>
+                    @endforeach
+                  </select>
+                </div>
+                      </div>
+
+
+                  <div class="form-group w-50">
+                    <label for="exampleInputFile">Добавить главное изображение</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="main_image" >
+                        <label class="custom-file-label" >Выберите файл</label>
+                      </div>
+                      <div class="input-group-append">
+                        <span class="input-group-text">Загрузка</span>
+                      </div>
+                    </div>
+                    @error('main_image')
+<div class="text-danger">Это поле необходимо заполнить</div>
+                 @enderror
+                  </div>
 </div>
 <div class="form-group">
                  <input type="submit" class="btn btn-primary" value="Добавить">

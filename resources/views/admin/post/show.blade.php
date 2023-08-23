@@ -50,7 +50,7 @@
                  
                     <tr>
                       <td>id</td>
-                      <td>{{$post->title}}</td>
+                      <td>{{$post->id}}</td>
                     
                  
                     </tr>
