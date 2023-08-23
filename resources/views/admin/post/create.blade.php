@@ -38,13 +38,15 @@
                <div class="form-group w-25">
                  <input type="text" name="title" class="form-control"  placeholder="название" value="{{old('title')}}"></div>
                  @error('title')
-<div class="text-danger">Это поле необходимо заполнить</div>
+<div class="text-danger">
+    {{$message}}
+</div>
                  @enderror
 
 <div class="form-group ">
     <textarea value="{{old('content')}}" id="summernote" name="content"></textarea>
     @error('content')
-<div class="text-danger">Это поле необходимо заполнить</div>
+<div class="text-danger">   {{$message}}</div>
                  @enderror
                  <div class="form-group w-50">
                     <label for="exampleInputFile">Добавить файл</label>
@@ -58,7 +60,7 @@
                       </div>
                     </div>
                     @error('preview_image')
-<div class="text-danger">Это поле необходимо заполнить</div>
+<div class="text-danger">   {{$message}}</div>
                  @enderror
                   </div>
 
@@ -72,6 +74,11 @@
                           @endforeach
                           
                         </select>
+                        @error('category_id')
+<div class="text-danger">   {{$message}}</div>
+                 @enderror
+</div>
+
                         <div class="form-group">
                   <label>Теги</label>
                   <select class="select2" multiple="multiple" name="tag_ids[]" data-placeholder="Выберите теги" style="width: 100%;">
@@ -95,7 +102,7 @@
                       </div>
                     </div>
                     @error('main_image')
-<div class="text-danger">Это поле необходимо заполнить</div>
+<div class="text-danger">   {{$message}}</div>
                  @enderror
                   </div>
 </div>

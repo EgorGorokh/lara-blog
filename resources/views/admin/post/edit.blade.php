@@ -40,14 +40,14 @@
                <div class="form-group w-25">
                  <input type="text" name="title" class="form-control"  placeholder="название" value="{{$post->title}}"></div>
                  @error('title')
-<div class="text-danger">Это поле необходимо заполнить</div>
+<div class="text-danger">{{$message}}</div>
                  @enderror
 
 <div class="form-group ">
     <textarea value="{{$post->content}}" id="summernote" name="content">{{$post->content}}</textarea>
   
     @error('content')
-<div class="text-danger">Это поле необходимо заполнить</div>
+<div class="text-danger">{{$message}}</div>
                  @enderror
                  <div class="form-group w-50">
                     <label for="exampleInputFile">Добавить файл</label>
@@ -64,7 +64,7 @@
                       </div>
                     </div>
                     @error('preview_image')
-<div class="text-danger">Это поле необходимо заполнить</div>
+<div class="text-danger">{{$message}}</div>
                  @enderror
                   </div>
 
@@ -104,7 +104,7 @@
                       </div>
                     </div>
                     @error('main_image')
-<div class="text-danger">Это поле необходимо заполнить</div>
+<div class="text-danger">{{$message}}</div>
                  @enderror
                   </div>
 </div>

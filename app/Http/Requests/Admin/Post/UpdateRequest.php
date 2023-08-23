@@ -32,4 +32,24 @@ class UpdateRequest extends FormRequest
 
         ];
     }
+
+
+
+    public function messages(){
+        return[
+    'title.required'=>'Это поле необходимо для заполнения',
+    'title.required'=>'Данные должны соответстовать строчному типу',
+    'preview_image.required'=>'Это поле небходимо для заполнения',
+    'preview_image.file'=>'Небходимо выбрать файл',
+    'main_image.required'=>'Это поле небходимо для заполнения',
+    'main_image.file'=>'Небходимо выбрать файл',
+    'category_id.required'=>'Это поле небходимо для заполнения',
+    'category_id.integer'=>'айди категории должен быть числом',
+    'category_id.exists'=>'айди категории должен быть в базе',
+    'tag_ids.array'=>'необходимо отправить массив данных',
+    
+    
+        ];
+    }
+
 }
