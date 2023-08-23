@@ -8,10 +8,17 @@ Route::group(['namespace'=>'Main'],function (){
     Route::get('/','IndexController');
 });
 
-Route::group(['namespace'=>'Admin','prefix'=>'admin','middleware'=>['auth','admin']],function (){
-    Route::group(['namespace'=>'Main'],function (){
-        Route::get('/','IndexController');
+Route::group(['namespace'=>'Personal','prefix'=>'personal','middleware'=>['auth','admin']],function (){
+    Route::group(['namespace'=>'Main'], function () {
+        Route::get('/', 'IndexController')->name('personal.main.index');
     });
+});
+
+    Route::group(['namespace'=>'Admin','prefix'=>'admin','middleware'=>['auth','admin']],function (){
+        Route::group(['namespace'=>'Main'],function (){
+            Route::get('/','IndexController')->name('admin.main.index');
+        });
+      
 
 
 
