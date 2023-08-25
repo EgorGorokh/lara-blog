@@ -15,6 +15,7 @@ class Post extends Model
     use SoftDeletes;
     protected $table='posts';
     protected $quarded=false;
+    protected $withCount=['likedUsers'];
 
 
 
