@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\User;
 
 class User extends Authenticatable
 {
@@ -57,4 +58,16 @@ self::ROLE_READER=>'читатель'
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+
+public function likedPosts(){
+   // dd($post);
+return $this->belongsToMany(Post::class,'post_user_likes','user_id','post_id');
+}
+
+
+public function comments(){
+return $this->hasMany(Comment::class,'user_id','id');
+}
 }

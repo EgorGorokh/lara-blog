@@ -3,6 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{asset('assets/vendors/flag-icon-css/css/flag-icon.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/vendors/font-awesome/css/all.min.css')}}"><!-- -->
+    <link rel="stylesheet" href="{{asset('assets/vendors/aos/aos.css')}}"><!-- gh-->
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}"><!-- -->
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">

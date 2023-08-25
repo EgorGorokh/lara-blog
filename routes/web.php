@@ -5,15 +5,37 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['namespace'=>'Main'],function (){
-    Route::get('/','IndexController');
+    Route::get('/','IndexController')->name('main.index');
 });
 
+Route::group(['namespace'=>'Post','prefix'=>'posts'],function (){
+    Route::get('/','IndexController')->name('post.index');
+    Route::get('/{post}','ShowController')->name('post.show');
+});
+
+
 Route::group(['namespace'=>'Personal','prefix'=>'personal','middleware'=>['auth','admin']],function (){
-    Route::group(['namespace'=>'Main'], function () {
+    Route::group(['namespace'=>'Main','prefix'=>'main'], function () {
         Route::get('/', 'IndexController')->name('personal.main.index');
+    });
+    Route::group(['namespace'=>'Liked','prefix'=>'likeds'], function () {
+        Route::get('/', 'IndexController')->name('personal.liked.index');
+        Route::delete('/{post}', 'DeleteController')->name('personal.liked.delete');
+    });
+    Route::group(['namespace'=>'Comment','prefix'=>'comments'], function () {
+        Route::get('/', 'IndexController')->name('personal.comment.index');
+        Route::get('/{comment}/edit', 'EditController')->name('personal.comment.edit');
+        Route::patch('/{comment}', 'UpdateController')->name('personal.comment.update');
+        Route::delete('/{comment}', 'DeleteController')->name('personal.comment.delete');
     });
 });
 
+
+
+
+
+
+//Route::group(['namespace'=>'Admin','prefix'=>'admin','middleware'=>'admin'],function (){
     Route::group(['namespace'=>'Admin','prefix'=>'admin','middleware'=>['auth','admin']],function (){
         Route::group(['namespace'=>'Main'],function (){
             Route::get('/','IndexController')->name('admin.main.index');

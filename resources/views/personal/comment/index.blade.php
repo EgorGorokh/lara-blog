@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+@extends('personal.layouts.main')
 @section('content')
 
 
@@ -9,12 +9,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Посты</h1>
+                        <h1 class="m-0">Комментарии</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{route('admin.post.index')}}">Главная</a></li>
-                            <li class="breadcrumb-item active">Посты</li>
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Комментарии</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -27,14 +27,8 @@
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
-                    <div class="col-2 mb-3" >
-                    <a href="{{route('admin.post.create')}}" class="btn btn-block btn-primary">добавить</a>
-                    </div>
-
-                    <div class="row"></div>
-                    <div class="col-12">
-             
-             <div class="card">
+                    <div class="row-6">
+                <div class="card">
               
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0">
@@ -44,21 +38,20 @@
                     <tr>
                       <th>ID</th>
                       <th>Название</th>
-                      <th class="text-center"colspan="3">действия</th>
+                      <th class="text-center"colspan="2">действия</th>
                    
                    
                     </tr>
                   </thead>
                   <tbody>
 
-                  @foreach($posts as $post)
+                  @foreach($comments as $comment)
                     <tr>
-                      <td>{{$post->id}}</td>
-                      <td>{{$post->title}}</td>
-                      <th class="text-center"><a href="{{route('admin.post.show',$post->id)}}"><i class="far fa-eye"></i></a></th>
-                      <th class="text-center"><a href="{{route('admin.post.edit',$post->id)}}"><i class="far fa-pencil-alt"></i></a></th>
+                      <td>{{$comment->id}}</td>
+                      <td>{{$comment->message}}</td>
+                      <th class="text-center"><a href="{{route('personal.comment.edit',$comment->id)}}"><i class="far fa-pencil-alt"></i></a></th>
                       <th class="text-center">
-                        <form action="{{route('admin.post.delete',$post->id)}}" method="post">
+                        <form action="{{route('personal.comment.delete',$comment->id)}}" method="post">
                             @csrf
                             @method('delete')
                             <button type="submit" class="border-0 bg-transparent">
@@ -75,8 +68,9 @@
                 </table>
               </div>
               <!-- /.card-body -->
-            </div></div>
-             </div>
+            </div>
+</div>
+                  
                     <!-- ./col -->
                 </div>
                 <!-- /.row -->
